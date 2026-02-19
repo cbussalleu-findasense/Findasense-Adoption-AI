@@ -104,3 +104,9 @@ export const ENRICHED_POWER_USERS = [
     days: 17 
   }
 ];
+
+export const STRATEGIC_INSIGHTS = `• La tasa de adopción del 53.6% indica una masa crítica alcanzada, superando la mitad del universo auditado, lo que valida la utilidad de las herramientas en el flujo de trabajo diario.
+
+• Para cerrar la brecha en Project Management (32%), se recomienda implementar "AI-Sprints" de 15 minutos semanales enfocados en automatización de minutas y seguimiento de tareas.
+
+• Movilizar a los 129 inactivos de la Gemini App representaría un incremento potencial del 117% en la capacidad de procesamiento de información estratégica en tiempo real.`;

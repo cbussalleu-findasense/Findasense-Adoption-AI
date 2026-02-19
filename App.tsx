@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
   Legend, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PieChart, Pie,
@@ -7,8 +7,7 @@ import {
 } from 'recharts';
 import Layout from './components/Layout';
 import MetricCard from './components/MetricCard';
-import { MOCK_DATA, COLORS, ENRICHED_POWER_USERS, TREND_DATA } from './constants';
-import { getAIInsights } from './services/geminiService';
+import { MOCK_DATA, COLORS, ENRICHED_POWER_USERS, TREND_DATA, STRATEGIC_INSIGHTS } from './constants';
 
 const GlobalChampionsTable = ({ 
   title = "AI Champions", 
@@ -93,30 +92,10 @@ const GlobalChampionsTable = ({
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
-  const [aiInsights, setAiInsights] = useState<string | null>(null);
-  const [loadingInsights, setLoadingInsights] = useState(false);
   
   // Filtros
   const [selectedPractice, setSelectedPractice] = useState('All');
   const [selectedRegion, setSelectedRegion] = useState('All');
-
-  const fetchInsights = async () => {
-    setLoadingInsights(true);
-    try {
-      const insights = await getAIInsights(MOCK_DATA);
-      setAiInsights(insights);
-    } catch (err) {
-      setAiInsights("Error al conectar con Gemini.");
-    } finally {
-      setLoadingInsights(false);
-    }
-  };
-
-  useEffect(() => {
-    if (activeTab === 'overview' && !aiInsights) {
-      fetchInsights();
-    }
-  }, [activeTab]);
 
   const usageSegments = [
     { name: 'Activos', value: 110, fill: '#F97316' },
@@ -181,16 +160,9 @@ const App: React.FC = () => {
                   <span className="text-xl">🧠</span> Strategic Insights (Directo)
                 </h3>
                 <div className="prose prose-invert prose-sm max-h-[350px] overflow-y-auto custom-scrollbar">
-                  {aiInsights ? (
-                    <div className="text-slate-300 leading-relaxed text-sm">
-                      <pre className="whitespace-pre-wrap font-sans text-sm">{aiInsights}</pre>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center h-[300px] text-slate-500">
-                      <div className="w-8 h-8 border-2 border-slate-700 border-t-orange-500 rounded-full animate-spin mb-4"></div>
-                      <p className="text-[10px] uppercase font-black tracking-widest">Generando bullets...</p>
-                    </div>
-                  )}
+                  <div className="text-slate-300 leading-relaxed text-sm">
+                    <pre className="whitespace-pre-wrap font-sans text-sm">{STRATEGIC_INSIGHTS}</pre>
+                  </div>
                 </div>
               </div>
             </div>
