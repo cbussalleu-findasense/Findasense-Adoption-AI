@@ -39,8 +39,24 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange }) => 
           <div className="pt-4 pb-2 px-4">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Reports</p>
           </div>
-          <NavItem icon="🛠️" label="Models & Tools" onClick={() => {}} />
-          <NavItem icon="💰" label="ROI Analysis" onClick={() => {}} />
+          <NavItem 
+            icon="🛠️" 
+            label="Tools & Products" 
+            active={activeTab === 'tools'} 
+            onClick={() => onTabChange('tools')} 
+          />
+          <NavItem 
+            icon="💰" 
+            label="ROI Analysis" 
+            active={activeTab === 'roi'} 
+            onClick={() => onTabChange('roi')} 
+          />
+          <NavItem 
+            icon="🛑" 
+            label="Inactivos (51)" 
+            active={activeTab === 'inactives'} 
+            onClick={() => onTabChange('inactives')} 
+          />
         </nav>
         
         <div className="p-6 border-t border-slate-800">
